@@ -1,0 +1,133 @@
+/!!!
+/%html.app{lang: 'en'}
+/  %head
+/    %meta{charset: 'utf-8'}
+/    %title ShuMian | 好面条, 有劲道
+/    %meta{content: 'ShuMian', name: "description"}
+/    %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}/
+/    = stylesheet_link_tag :admin/
+
+/    = csrf_meta_tags/
+
+/  %body{ id: params[:controller].gsub('/', '_'), class: params[:action] }
+/    - if devise_controller? && !admin_user_signed_in?
+/      = yield
+/    - else
+/      %section.vbox
+/        = render 'admin/shared/header'
+/        %section
+/          %section.hbox.stretch
+/            = render 'admin/shared/sidebar'
+/            %section#content
+/              %section.vbox
+/                %section.scrollable.padder
+/                  = render 'admin/shared/crumbs', main_nav: @main_nav, sec_nav: @sec_nav
+/                  - if flash[:alert]
+/                    .alert.alert-danger
+/                      %p= flash[:alert]
+/                  - elsif flash[:notice]
+/                    .alert.alert-success
+/                      %p= flash[:notice]
+/                  = yield
+/              %a.hide.nav-off-screen-block{"data-target" => "#nav", "data-toggle" => "class:nav-off-screen", href: "#"}
+/            %aside#notes.bg-light.lter.b-l.aside-md.hide
+/              .wrapper Notification/
+
+/    = javascript_include_tag :admin
+/    = yield :js
+
+
+%html
+  %head
+    %title Bootstrap 101 Template
+    %meta{name:"viewport",content:"width=device-width, initial-scale=1.0"}
+    %link{rel:"stylesheet",href:"http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css"}
+    %script{src:"http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"}
+    %script{src:"http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"}  
+  %body
+    
+    %nav.navbar.navbar-default{:role => "navigation"}
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header{:backgroundcolor => "yellow"}
+        %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "#"} 杭州冷冻食品交易市场
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          /%li.active
+          /  %a{:href => "#"} 商户
+          /%li
+          /  %a{:href => "#"} 商品
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              商铺信息
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} 摊位
+              /%li.divider
+              %li
+                %a{:href => "#"} 商户
+
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              食品安全备案
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} 厂商
+              %li
+                %a{:href => "#"} 供应商
+              %li
+                %a{:href => "#"} 调拨商
+              %li
+                %a{:href => "#"} 小作坊                                            
+              %li.divider
+              %li
+                %a{:href => "#"} 商品
+
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              日常巡查
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} 考评规范
+              %li
+                %a{:href => "#"} 考评周期
+              %li.divider  
+              %li
+                %a{:href => "#"} 违规记录
+              %li
+                %a{:href => "#"} 工作日志                                            
+              %li.divider
+              %li
+                %a{:href => "#"} 考评得分        
+
+        /%ul.nav.navbar-nav.navbar-right
+        /  %li
+        /    %a{:href => "#"} Link
+        /  %li.dropdown
+        /    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        /      Dropdown
+        /      %b.caret
+        /    %ul.dropdown-menu
+        /      %li
+        /        %a{:href => "#"} Action
+        /      %li
+        /        %a{:href => "#"} Another action
+        /      %li
+        /        %a{:href => "#"} Something else here
+        /      %li.divider
+        /      %li
+        /        %a{:href => "#"} Separated link
+      / /.navbar-collapse
+
+
+    = yield
+    %script{src:"http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"}
+    %script{src:"http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"}

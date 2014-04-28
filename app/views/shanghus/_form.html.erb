@@ -1,0 +1,37 @@
+<%= form_for(@shanghu) do |f| %>
+  <% if @shanghu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shanghu.errors.count, "error") %> prohibited this shanghu from being saved:</h2>
+
+      <ul>
+      <% @shanghu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :合同 %><br />
+    <%= f.text_field :hetong %>
+  </div>
+  <div class="field">
+    <%= f.label :字号 %><br />
+    <%= f.text_field :zihao %>
+  </div>
+  <div class="field">
+    <%= f.label :负责人 %><br />
+    <%= f.text_field :fuzeren %>
+  </div>
+  <div class="field">
+    <%= f.label :电话 %><br />
+    <%= f.text_field :dianhua %>
+  </div>
+  <div class="field">
+    <%= f.label :产品类型 %><br />
+    <%= raw pinlei f %>
+  </div>
+  <div class="actions">
+    <%= f.submit("提交") %>
+  </div>
+<% end %>

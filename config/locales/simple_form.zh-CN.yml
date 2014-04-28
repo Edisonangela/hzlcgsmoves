@@ -1,0 +1,39 @@
+zh-CN:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please review the problems below:"
+    # Labels and hints examples
+    labels:
+      defaults:
+        password: 密码
+        name: 名称
+        sequence: 序号
+        menu_type: 菜单类型
+        tanweihao: 摊位号
+      weixin_menu:
+        name: 名称
+        key:
+        url:
+      weixin_sub_menu:
+        name: 名称
+        key:
+        url:
+
+    hints:
+      shop:
+        name: '比如: 蜀面xxx路店'
+        logo: 请上传jpg/png的图片，大小不要超过2M
+        description: 输入店铺描述，尽量不要超过140个字
+      event:
+        title: '活动的名称'
+        body: '介绍一下咱们的活动吧'
+        start_at: 必须小于结束时间
+        end_at: 必须大于开始时间

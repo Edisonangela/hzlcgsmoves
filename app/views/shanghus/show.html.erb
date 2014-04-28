@@ -1,0 +1,35 @@
+<%= extLayoutInnerFrom("查看 商户")%>
+
+<div id='content'>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>摊位号:</b>
+  <%= @shanghu.tanwei.tanweihao if @shanghu.tanwei != nil %>
+</p>
+
+<p>
+  <b>字号:</b>
+  <%= @shanghu.zihao %>
+</p>
+
+<p>
+  <b>负责人:</b>
+  <%= @shanghu.fuzeren %>
+</p>
+
+<p>
+  <b>电话:</b>
+  <%= @shanghu.dianhua %>
+</p>
+
+<p>
+  <b>产品类型:</b>
+  <%= @shanghu.leixing %>
+</p>
+
+
+<%= link_to 'Edit', edit_shanghu_path(@shanghu) %> |
+<%= link_to 'Back', shanghus_path %>
+
+</div>

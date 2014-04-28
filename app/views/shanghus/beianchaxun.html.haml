@@ -1,0 +1,11 @@
+%section#content.m-t-lg.wrapper-md.animated.fadeInUp
+  .container.aside-xxl
+    %section.panel.panel-default.bg-white.m-t-lg
+      %header.panel-heading.text-center
+        %strong 商品备案查询
+
+      = simple_form_for resource, :url => '/shipinanquan/sj', :html => { :class =>'panel-body wrapper-lg' ,:method => 'post'}, defaults: { input_html: { class: 'form-control input-lg' } } do |f|
+        = f.input :tanweihao, input_html: { class: 'input-lg' }, placeholder: '请输入摊位号', label_html: { class: 'no_float' }
+        %p
+        .results_shanghu
+        = f.button :submit, '查询备案', class: 'btn btn-primary'

@@ -1,0 +1,127 @@
+zh-CN:
+  admin:
+    users:
+      index:
+        header: 用户管理
+      edit:
+        header: 用户管理
+    shops:
+      new:
+        header: 创建门店
+      index:
+        header: 门店管理
+      edit:
+        header: 修改门店
+    items:
+      new:
+        header: 创建菜品
+      index:
+        header: 菜品管理
+      edit:
+        header: 修改菜品
+    categories:
+      new:
+        header: 创建分类
+      index:
+        header: 菜单分类管理
+      edit:
+        header: 菜单分类管理
+    packages:
+      new:
+        header: 创建套餐
+      index:
+        header: 套餐管理
+      edit:
+        header: 修改套餐
+    user_addresses:
+      entries:
+        header: 用户地址管理
+
+  activerecord:
+    models:
+      user: 用户
+      shop: 门店
+      item: 菜品
+      category: 菜单分类
+      photo: 图片
+      package: 套餐
+      wexin_menu: 公众号菜单
+      event: 活动
+      address: 地址
+    attributes:
+      user:
+        id: 编号
+        email: Email
+        created_at: 创建日期
+        updated_at: 最近修改日期
+        name: 姓名
+        mobile_phone: 电话
+        avatar: 头像
+        rating: 等级
+        is_admin: 管理员?
+        points: 积分
+        gender: 性别
+        bio: 个性签名
+      shop:
+        id: 编号
+        name: 名称
+        logo: Logo
+        description: 描述
+        location: 地址
+        created_at: 创建日期
+        updated_at: 最近修改日期
+
+      item:
+        id: 编号
+        name: 名称
+        category_id: 所属分类
+        cover: 封面
+        price: 价格
+        description: 描述
+        comments_count: 评论数
+        is_recommended: 推荐?
+        created_at: 创建日期
+        updated_at: 最近修改日期
+        material_list: 用料
+
+      category:
+        id: ID
+        name: 分类名称
+        position: 排序编号
+        created_at: 创建日期
+        updated_at: 最近修改日期
+
+      photo:
+        target_id: 所属图片ID
+        target_type: 所属图片类
+        image: 图片
+        position: 排序编号
+        created_at: 创建日期
+        updated_at: 最近修改日期
+
+      package:
+        id: 编号
+        name: 名称
+        description: 描述
+        item_ids: 菜品列表
+        group_purchase: 套餐价
+      package_item:
+        item_id: 菜品名
+        position: 菜品排序
+
+      wexin_menu:
+        name: 名称
+      event:
+        id: 编号
+        shop_id: 电商
+        title: 名称
+        body: 内容
+        banner: 活动图片
+        start_at: 开始日期
+        end_at: 截至日期
+        created_at: 创建时间
+        updated_at: 最近一次更新时间
+      address:
+        contact_name: 姓名
+        contact_phone: 电话
+        body: 送货地址

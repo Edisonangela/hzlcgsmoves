@@ -1,0 +1,267 @@
+<%= extLayoutInnerFrom("食品安全备案")%>
+
+<div id="content">
+<h1>第一步：上家备案</h1>
+<h1><label><%= @shanghu.tanwei.tanweihao%>-<%= @shanghu.zihao%>食品备案核对表：</label></h1>
+<%= form_for @shanghu, :url => {:controller => :shanghus,:action => :associate_shangjia, :id =>@shanghu} do |f| %>
+  <!-- obsever_fiedl ajax <p>摊位号：<%= text_field_tag "tanweihao" %> <div id="spinner" >数据查找中</div><div id="results"></div></p> -->
+  
+  <!--<label>供货厂商：</label> -->
+  
+  <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">名称</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">地址</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">产品类型</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">执照有效期</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">生产许可证有效期</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">动物防疫条件合格证</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">养殖证有效期</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">查看更新商品</th>
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+  <% @shanghu.changshangs.each do |g|%> 
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'changshangs[]', g.id,true%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="15%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.dizhi%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.leixing%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= truncate(g.zhizhao.to_s,:length => 17)%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= truncate(g.shengchanxuke.to_s,:length => 17)%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="15%"><%= truncate(g.fangyi.to_s,:length => 17)%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= truncate(g.yangzhi.to_s,:length => 17)%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= link_to '查看更新商品', :controller => "shipinanquan",:action => "changshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id %></td>
+  </tr>
+  <%end%>
+  <div id="results_changshang"></div>
+</tbody> 
+</table>
+  
+</br>
+<label>供应商：</label>
+  <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">名称</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">地址</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">产品类型</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">执照有效期</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">食品流通许可证有效期</th>
+
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">查看更新商品</th>
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+  <% @shanghu.gongyingshangs.each do |g|%> 
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'gongyingshangs[]', g.id,true%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="15%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.dizhi%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.leixing%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= g.zhizhao%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= g.liutong%></td>
+
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= link_to '查看更新商品', :controller => "shipinanquan",:action => "gongyingshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id %></td>
+  </tr>
+  <%end%>
+  <div id="results_gongyingshang"></div>
+</tbody> 
+</table>
+  
+</br>    
+      
+      
+      
+
+<!--<label>调拨商：</label>  -->
+  <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">名称</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">地址</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">产品类型</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">执照有效期</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">食品流通许可证有效期</th>
+
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">查看更新商品</th>
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+  <% @shanghu.diaoboshangs.each do |g|%> 
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'diaoboshangs[]', g.id,true%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="15%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.dizhi%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.leixing%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= g.zhizhao%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= g.liutong%></td>
+
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= link_to '查看更新商品', :controller => "shipinanquan",:action => "diaoboshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id %></td>
+  </tr>
+  <%end%>
+  <div id="results_diaoboshang"></div>
+</tbody> 
+</table>
+  
+</br>        
+
+  	   
+
+<label>小作坊：</label>
+  <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">名称</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">地址</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">产品类型</th>
+
+
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">查看更新商品</th>
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+  <% @shanghu.xiaozuofangs.each do |g|%> 
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'xiaozuofangs[]', g.id,true%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="15%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.dizhi%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="8%"><%= g.leixing%></td>
+
+
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="13%"><%= link_to '查看更新商品', :controller => "shipinanquan",:action => "xiaozuofangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id %></td>
+  </tr>
+  <%end%>
+  <div id="results_xiaozuofang"></div>
+</tbody> 
+</table>
+  
+</br>       
+
+  	
+  	  
+  </br><div class="actions">
+    <%= f.submit '保存'%>
+  </div>
+<% end %>
+
+  
+  
+  
+<h1><label>为<%= @shanghu.zihao%>增加上家：</label></h1>
+  <%= form_tag( searchs_path , :remote => true) do %>
+  查找：<%= text_field_tag 'shuju'%>
+  <%= submit_tag '查找' %>
+<% end %>
+
+<h1><label>新增上家(请选择上家类型)：<%= select_tag "sjleixing",options_for_select({"厂商"=>"changshang","供货商" =>"gongyingshang","调拨商" =>"diaoboshang","小作坊" =>"xiaozuofang"}) %></label></h1>
+    <div id="tianjiagongyingshang" style="display: none">
+   <h1>新建供应商</h1>
+    <%= render 'gongyingshangs/ajaxnew' %>
+    </div>
+    <div id="tianjiachangshang" style="display: none">
+   <h1>新建厂商</h1>
+    <%= render 'changshangs/ajaxnew' %>
+    </div>
+   <div id="tianjiadiaoboshang" style="display: none">
+   <h1>新建调拨商</h1>
+    <%= render 'diaoboshangs/ajaxnew' %>
+    </div>
+   <div id="tianjiaxiaozuofang" style="display: none">
+   <h1>新建小作坊</h1>
+    <%= render 'xiaozuofangs/ajaxnew' %>
+    </div>
+
+
+
+
+    
+</div>
+
+ <script type="text/javascript">
+  $("#spinner").hide();
+  $("#tanweihao").bind("blur", '',function() {
+  $("#spinner").show(); // show the spinner
+  //var form = $(this).parents("form"); // grab the form wrapping the search bar.
+  //var url = "/tanwei/ajaxshanghu/";//form.attr("action"); // grab the URL from the form's action value.
+  var formData = $("#tanweihao").val();
+  var url = "/tanwei/ajaxshanghu/" + formData;//$("#tanweihao").html(); // grab the data in the form
+  $.get(url,'',function(html) { // perform an AJAX get, the trailing function is what happens on successful get.
+   // replace the "results" div with the result of action taken
+     });
+  }); 
+  
+  $("#sjleixing").bind("change","",function(){
+ 
+  	var sjlx = $("#sjleixing");
+  	if (sjlx.val() =="gongyingshang")
+  	{
+  		$("#tianjiagongyingshang").css({display:"block"});
+  		$("#tianjiachangshang").css({display:"none"});
+  		$("#tianjiadiaoboshang").css({display:"none"});
+  		$("#tianjiaxiaozuofang").css({display:"none"});
+  		
+  	}
+  	if (sjlx.val() =="changshang")
+  	{
+  		$("#tianjiagongyingshang").css({display:"none"});
+  		$("#tianjiachangshang").css({display:"block"});
+  		$("#tianjiadiaoboshang").css({display:"none"});
+  		$("#tianjiaxiaozuofang").css({display:"none"});
+  	}
+  	if (sjlx.val() =="diaoboshang")
+  	{
+  		$("#tianjiagongyingshang").css({display:"none"});
+  		$("#tianjiachangshang").css({display:"none"});
+  		$("#tianjiadiaoboshang").css({display:"block"});
+  		$("#tianjiaxiaozuofang").css({display:"none"});
+  		
+  	}
+  	if (sjlx.val() =="xiaozuofang")
+  	{
+  		$("#tianjiagongyingshang").css({display:"none"});
+  		$("#tianjiachangshang").css({display:"none"});
+  		$("#tianjiadiaoboshang").css({display:"none"});
+  		$("#tianjiaxiaozuofang").css({display:"block"}); 		
+  	}
+  });
+  
+  </script>
+

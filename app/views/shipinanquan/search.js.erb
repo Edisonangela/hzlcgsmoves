@@ -1,0 +1,30 @@
+<% @changshangs.each do |g|%>
+var li = document.createElement("li");
+li.innerHTML = '<%= check_box_tag 'changshangs[]', g.id,false %><%= "#{g.name}  #{g.dizhi}"%>' ;
+$("#results_changshang").append(li);
+<% end %>
+
+<% @diaoboshangs.each do |g|%>
+var li = document.createElement("li");
+li.innerHTML = '<%= check_box_tag 'diaoboshangs[]', g.id,false %><%= "#{g.name}  #{g.dizhi}"%>' ;
+$("#results_diaoboshang").append(li);
+<% end %>
+
+<% @xiaozuofangs.each do |g|%>
+var li = document.createElement("li");
+li.innerHTML = '<%= check_box_tag 'xiaozuofangs[]', g.id,false %><%= "#{g.name}  #{g.dizhi}"%>' ;
+$("#results_xiaozuofang").append(li);
+<% end %>
+
+<% @gongyingshangs.each do |g|%>
+var li = document.createElement("li");
+li.innerHTML = '<%= check_box_tag 'gongyingshangs[]', g.id,false %><%= "#{g.name}  #{g.dizhi}"%>' ;
+$("#results_gongyingshang").append(li);
+<% end %>
+
+
+ 
+
+
+
+

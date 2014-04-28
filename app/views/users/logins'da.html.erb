@@ -1,0 +1,19 @@
+<div id=content>
+<p id="notice"><%= notice %> </p>
+<%= form_for @user,:url =>{:action => "login"} do |f| %>
+
+  <div class="field">
+    <%= f.label :帐号 %><%= f.text_field :name%>
+    
+  </div>
+  <div class="field">
+  <%= f.label :密码 %><%= f.password_field :password %>
+  </div> 
+
+  <div class="actions">
+    <%= f.submit'登录' %>
+  </div>
+<% end %>
+
+</div>
+

@@ -1,0 +1,96 @@
+<%= extLayoutInnerFrom("食品安全备案")%>
+
+<div id="content">
+	<h1>第二步：商品备案</h1>
+<label><%= @shanghu.zihao%>目前已备案<%= @shangjia.name %>以下这些产品：</label>
+<%= form_for @shanghu, :url => {:controller => :shanghus,:action => :associate_diaoboshangsp,:_method => "post",:id =>@shanghu,:shangjia_id =>@shangjia,:laoshangpin_id => @laoshangpin_id } do |f| %>
+  
+  <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">品名</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">包装</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">规格</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">单重</th>
+
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+ 
+ <% @shangpins.each do |g| %>
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'shangpins[]', g.id,true %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="20%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.baozhuang%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.guige%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.danzhong%></td>
+ 
+
+  </tr>
+  <%end%>
+  
+</tbody> 
+
+<div id ="results_shangpin"></div>
+</table>
+  
+
+<lable> <%= @shangjia.name %>的其他商品：</lable>
+  
+   <table id="mytable" cellspacing="1">
+  <tr>
+  <th class ="zi" scope="col" abbr="Configurations">状态</th>
+  <th class ="zi" scope="col" abbr="Dual 1.8GHz">品名</th>
+  <th class ="zi" scope="col" abbr="Dual 2GHz">包装</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">规格</th>
+  <th class ="zi" scope="col" abbr="Dual 2.5GHz">单重</th>
+
+  </tr>
+<tbody>
+
+  <%@biaoji=0%>
+ 
+ <% @ketianjiashangpins.each do |g| %>
+   <%xinghao2=""%>
+   <%@biaoji=@biaoji+1%>
+  <%if(@biaoji%2==0)%>
+  <%xinghao="spec1"%>
+  <%else%>
+  <%xinghao="specalt1"%>
+  <%xinghao2="alt1"%>
+  <%end%>
+  <tr>
+  <td scope="row" class="<%= xinghao%>" width="5%"><%= check_box_tag 'shangpins[]', g.id,false %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="20%"><%= g.name %></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.baozhuang%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.guige%></td>
+  <td class="<%= xinghao2%>" style="font-size:9pt" width="10%"><%= g.danzhong%></td>
+ 
+
+  </tr>
+  <%end%>
+
+</tbody> 
+
+
+</table> 
+
+  <div class="actions">
+    <%= f.submit '保存'%>
+  </div>
+<% end %>
+
+  <br/><h1>新建商品</h1>
+  <%= render 'shangpins/ajaxnew' %>
+
+
+</div>

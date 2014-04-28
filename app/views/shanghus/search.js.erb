@@ -1,0 +1,12 @@
+
+
+<% @results.each do |g|%>
+      var li = document.createElement("li");
+      li.innerHTML = '<%= check_box_tag 'shanghus[]', g.id,false %><%= "#{g.fuzeren}  #{g.zihao}"%>' ;
+      $("#results").append(li);
+  	   <% end %>
+ 
+
+
+
+

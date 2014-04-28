@@ -1,0 +1,113 @@
+
+#content
+
+  %h5
+    %label
+      = @shanghu.tanwei.tanweihao
+      \-#{@shanghu.zihao}食品备案核对表：
+  = form_for @shanghu, :url => {:controller => :shanghus,:action => :associate_shangjia, :id =>@shanghu} do |f|
+    / obsever_fiedl ajax <p>摊位号：<haml:loud> text_field_tag &amp;quot;tanweihao&amp;quot; </haml:loud> <div id="spinner" >数据查找中</div><div id="results"></div></p>
+    %label 厂商：
+    .table-responsive
+      %table.table
+        %tr
+          %th{:abbr => "Configurations", :scope => "col"} 状态
+          %th{:abbr => "Dual 1.8GHz", :scope => "col"} 名称
+          %th{:abbr => "Dual 2GHz", :scope => "col"} 地址
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 产品类型
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 执照有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 生产许可证有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 动物防疫条件合格证
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 养殖证有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 查看更新商品
+        %tbody
+          - @shanghu.changshangs.each do |g|
+            %tr
+            
+              %td{ :scope => "row", :width => "5%"}= check_box_tag 'changshangs[]', g.id,true
+              %td{ :style => "font-size:9pt", :width => "15%"}= g.name
+              %td{ :style => "font-size:9pt", :width => "8%"}= g.dizhi
+              %td{ :style => "font-size:9pt", :width => "8%"}= g.leixing
+              %td{ :style => "font-size:9pt", :width => "13%"}= truncate(g.zhizhao.to_s,:length => 17)
+              %td{ :style => "font-size:9pt", :width => "13%"}= truncate(g.shengchanxuke.to_s,:length => 17)
+              %td{ :style => "font-size:9pt", :width => "15%"}= truncate(g.fangyi.to_s,:length => 17)
+              %td{ :style => "font-size:9pt", :width => "13%"}= truncate(g.yangzhi.to_s,:length => 17)
+              %td{ :style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "changshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
+      #results_changshang
+    
+    %label 供应商：
+    .table-responsive
+      %table.table
+        %tr
+          %th{:abbr => "Configurations", :scope => "col"} 状态
+          %th{:abbr => "Dual 1.8GHz", :scope => "col"} 名称
+          %th{:abbr => "Dual 2GHz", :scope => "col"} 地址
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 产品类型
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 执照有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 食品流通许可证有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 查看更新商品
+        %tbody
+
+          
+          - @shanghu.gongyingshangs.each do |g|
+            %tr
+            
+              %td{:class => xinghao, :scope => "row", :width => "5%"}= check_box_tag 'gongyingshangs[]', g.id,true
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "15%"}= g.name
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "8%"}= g.dizhi
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "8%"}= g.leixing
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= g.zhizhao
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= g.liutong
+              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "gongyingshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
+      #results_gongyingshang
+    
+
+
+    %label 调拨商：
+    .table-responsive
+      %table.table
+        %tr
+          %th{:abbr => "Configurations", :scope => "col"} 状态
+          %th{:abbr => "Dual 1.8GHz", :scope => "col"} 名称
+          %th{:abbr => "Dual 2GHz", :scope => "col"} 地址
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 产品类型
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 执照有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 食品流通许可证有效期
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 查看更新商品
+        %tbody
+          
+          - @shanghu.diaoboshangs.each do |g|
+           
+            %tr
+              %td{:scope => "row", :width => "5%"}= check_box_tag 'diaoboshangs[]', g.id,true
+              %td{:style => "font-size:9pt", :width => "15%"}= g.name
+              %td{:style => "font-size:9pt", :width => "8%"}= g.dizhi
+              %td{:style => "font-size:9pt", :width => "8%"}= g.leixing
+              %td{:style => "font-size:9pt", :width => "13%"}= g.zhizhao
+              %td{:style => "font-size:9pt", :width => "13%"}= g.liutong
+              %td{:style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "diaoboshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
+      #results_diaoboshang
+    
+    %label 小作坊：
+    .table-responsive
+      %table.table
+        %tr
+          %th{:abbr => "Configurations", :scope => "col"} 状态
+          %th{:abbr => "Dual 1.8GHz", :scope => "col"} 名称
+          %th{:abbr => "Dual 2GHz", :scope => "col"} 地址
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 产品类型
+          %th{:abbr => "Dual 2.5GHz", :scope => "col"} 查看更新商品
+        %tbody
+
+          - @shanghu.xiaozuofangs.each do |g|
+
+            %tr
+              %td{:scope => "row", :width => "5%"}= check_box_tag 'xiaozuofangs[]', g.id,true
+              %td{:style => "font-size:9pt", :width => "15%"}= g.name
+              %td{:style => "font-size:9pt", :width => "8%"}= g.dizhi
+              %td{:style => "font-size:9pt", :width => "8%"}= g.leixing
+              %td{:style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "xiaozuofangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
+      #results_xiaozuofang
+    .actions
+      = f.submit '保存'
+  

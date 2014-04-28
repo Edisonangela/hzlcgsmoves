@@ -1,0 +1,17 @@
+
+%section#content.m-t-lg.wrapper-md.animated.fadeInUp
+  .container.aside-xxl
+    %section.panel.panel-default.bg-white.m-t-lg
+      %header.panel-heading.text-center
+        %strong 登录
+      = simple_form_for resource, :url => 'users/login', :html => { :class =>'panel-body wrapper-lg' ,:method => 'post'}, defaults: { input_html: { class: 'form-control input-lg' } } do |f|
+        = f.input :name, input_html: { class: 'input-lg' }, placeholder: '姓名拼音', label_html: { class: 'no_float' }
+        = f.input :password, input_html: { class: 'input-lg' }, placeholder: '密码', label_html: { class: 'no_float' }
+
+       
+        = f.button :submit, '登录', class: 'btn btn-primary'
+
+        .line.line-dashed
+        %p.text-muted.text-center
+          %small 还没有帐号? Out了吧!
+       
