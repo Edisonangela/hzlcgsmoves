@@ -52,13 +52,13 @@
           - @shanghu.gongyingshangs.each do |g|
             %tr
             
-              %td{:class => xinghao, :scope => "row", :width => "5%"}= check_box_tag 'gongyingshangs[]', g.id,true
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "15%"}= g.name
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "8%"}= g.dizhi
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "8%"}= g.leixing
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= g.zhizhao
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= g.liutong
-              %td{:class => xinghao2, :style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "gongyingshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
+              %td{ :scope => "row", :width => "5%"}= check_box_tag 'gongyingshangs[]', g.id,true
+              %td{ :style => "font-size:9pt", :width => "15%"}= g.name
+              %td{ :style => "font-size:9pt", :width => "8%"}= g.dizhi
+              %td{ :style => "font-size:9pt", :width => "8%"}= g.leixing
+              %td{ :style => "font-size:9pt", :width => "13%"}= g.zhizhao
+              %td{ :style => "font-size:9pt", :width => "13%"}= g.liutong
+              %td{ :style => "font-size:9pt", :width => "13%"}= link_to '查看更新商品', :controller => "shipinanquan",:action => "gongyingshangsp",:shanghu_id => @shanghu.id,:shangjia_id => g.id
       #results_gongyingshang
     
 
