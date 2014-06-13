@@ -1,0 +1,65 @@
+
+%section#content.m-t-lg.wrapper-md.animated.fadeInUp
+  .container.aside-xxl
+    %section.panel.panel-default.bg-white.m-t-lg
+      %header.panel-heading.text-left
+        %strong  第二步：商品备案
+      
+      = @shanghu.zihao
+      目前已备案#{@shangjia.name}以下这些产品：
+      = form_for @shanghu, :url => {:controller => :shanghus,:action => :associate_changshangsp,:_method => "post",:id =>@shanghu,:shangjia_id =>@shangjia,:laoshangpin_id => @laoshangpin_id } do |f|
+        %table#mytable{:cellspacing => "1"}
+          %tr
+            %th.zi{:abbr => "Configurations", :scope => "col"} 状态
+            %th.zi{:abbr => "Dual 1.8GHz", :scope => "col"} 品名
+            %th.zi{:abbr => "Dual 2GHz", :scope => "col"} 包装
+            %th.zi{:abbr => "Dual 2.5GHz", :scope => "col"} 规格
+            %th.zi{:abbr => "Dual 2.5GHz", :scope => "col"} 单重
+          %tbody
+            - @biaoji=0
+            - @shangpins.each do |g|
+              - xinghao2=""
+              - @biaoji=@biaoji+1
+              - if(@biaoji%2==0)
+                - xinghao="spec1"
+              - else
+                - xinghao="specalt1"
+                - xinghao2="alt1"
+              %tr
+                %td{:class => xinghao, :scope => "row", :width => "5%"}= check_box_tag 'shangpins[]', g.id,true
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "20%"}= g.name
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.baozhuang
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.guige
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.danzhong
+          #results_shangpin
+        %lable
+          = @shangjia.name
+          的其他商品：
+        %table#mytable{:cellspacing => "1"}
+          %tr
+            %th.zi{:abbr => "Configurations", :scope => "col"} 状态
+            %th.zi{:abbr => "Dual 1.8GHz", :scope => "col"} 品名
+            %th.zi{:abbr => "Dual 2GHz", :scope => "col"} 包装
+            %th.zi{:abbr => "Dual 2.5GHz", :scope => "col"} 规格
+            %th.zi{:abbr => "Dual 2.5GHz", :scope => "col"} 单重
+          %tbody
+            - @biaoji=0
+            - @ketianjiashangpins.each do |g|
+              - xinghao2=""
+              - @biaoji=@biaoji+1
+              - if(@biaoji%2==0)
+                - xinghao="spec1"
+              - else
+                - xinghao="specalt1"
+                - xinghao2="alt1"
+              %tr
+                %td{:class => xinghao, :scope => "row", :width => "5%"}= check_box_tag 'shangpins[]', g.id,false
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "20%"}= g.name
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.baozhuang
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.guige
+                %td{:class => xinghao2, :style => "font-size:9pt", :width => "10%"}= g.danzhong
+        .actions
+          = f.submit '保存',class: 'btn btn-primary'
+      %br/
+      /%h1 新建商品
+      /= render 'shangpins/ajaxnew'
