@@ -1,0 +1,27 @@
+%section#content.m-t-lg.wrapper-md.animated.fadeInUp
+  .container.aside-xxl
+    %section.panel.panel-default.bg-white.m-t-lg
+      %header.panel-heading.text-left
+        %strong 
+
+        %label 商户列表：
+        .table-responsive
+          %table.table
+            %tr
+              %th{:abbr => "Configurations", :scope => "col"} 摊位号
+              %th{:abbr => "Dual 1.8GHz", :scope => "col"} 字号
+              %th{:abbr => "Dual 2GHz", :scope => "col"} 负责人
+              %th{:abbr => "Dual 2.5GHz", :scope => "col"} 联系电话
+              %th{:abbr => "Dual 2.5GHz", :scope => "col"} 经营大类
+              %th{:abbr => "Dual 2.5GHz", :scope => "col"} 操作
+            %tbody
+              - @tanweis.each do |g|
+                %tr
+                
+
+                  %td{ :style => "font-size:9pt", :width => "10%"}= g.tanweihao
+                  %td{ :style => "font-size:9pt", :width => "20%"}= g.shanghus.first.zihao
+                  %td{ :style => "font-size:9pt", :width => "20%"}= g.shanghus.first.fuzeren
+                  %td{ :style => "font-size:9pt", :width => "20%"}= g.shanghus.first.dianhua
+                  %td{ :style => "font-size:9pt", :width => "10%"}= g.shanghus.first.leixing
+                  %td{ :style => "font-size:9pt", :width => "20%"}= link_to '查看商品备案', :controller => "shipinanquan",:action => "sj",:tanweihao => g.tanweihao

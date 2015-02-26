@@ -2,8 +2,17 @@
 class ShipinanquanController < BaseController
   #main_nav_highlight :user
   #defaults resource_class: User, collection_name: 'users', instance_name: 'user'
+  def sjs
+    @tanweis= Tanwei.find(:all, :conditions => ["tanweihao like ?", "%" + params[:shanghu][:tanweihao] + "%"])
+
+    @shanghus = Array.new
+    @tanweis.each do |tw|
+      @shanghus<<tw.shanghus.first
+    end
+  end
+
   def sj
-    @tanwei = Tanwei.find_by_tanweihao(params[:shanghu][:tanweihao])
+    @tanwei = Tanwei.find_by_tanweihao(params[:tanweihao])
     @shanghu = @tanwei.shanghus.first
     @gongyingshang = Gongyingshang.new
     @changshang = Changshang.new
