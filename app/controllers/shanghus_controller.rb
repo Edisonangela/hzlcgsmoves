@@ -143,7 +143,9 @@ class ShanghusController < BaseController
     @shanghu.changshang_ids = params[:changshangs]
     @shanghu.diaoboshang_ids = params[:diaoboshangs]
     @shanghu.xiaozuofang_ids = params[:xiaozuofangs]
-    redirect_to "/shipinanquan/sj/#{params[:id]}"
+    @tanweihao = @shanghu.tanwei.tanweihao
+    #redirect_to "/shanghus/beianchaxun"
+    redirect_to :controller => "shipinanquan",:action => "sj",:tanweihao => @tanweihao
   
   end
 #shipinanquan模块，分别建立食品   与商户和厂家的关联 

@@ -20,6 +20,14 @@ class ShipinanquanController < BaseController
     @xiaozuofang = Xiaozuofang.new
   end
   
+  def sh
+    @shanghu = Shanghu.find(params[:id])
+    @gongyingshang = Gongyingshang.new
+    @changshang = Changshang.new
+    @diaoboshang = Diaoboshang.new
+    @xiaozuofang = Xiaozuofang.new
+  end
+
   def search
     response.headers["Content-Type"] = "text/javascript; charset=utf-8"
     @gongyingshangs = Gongyingshang.find(:all, :conditions => ["name like ?", "%" + params[:shuju] + "%"])

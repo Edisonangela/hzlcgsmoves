@@ -5,8 +5,8 @@
         %strong 
           = @shanghu.tanwei.tanweihao
           \-#{@shanghu.zihao}食品备案核对表：
-      = form_for @shanghu, :url => {:controller => :shanghus,:action => :associate_shangjia, :id =>@shanghu} do |f|
-        / obsever_fiedl ajax <p>摊位号：<haml:loud> text_field_tag &amp;quot;tanweihao&amp;quot; </haml:loud> <div id="spinner" >数据查找中</div><div id="results"></div></p>
+      = simple_form_for 'shanghu', url: {:controller => :shanghus,:action => :associate_shangjia, :id =>@shanghu}, html: { method: :post } do |f|
+     
         %label 厂商：
         .table-responsive
           %table.table
